@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Git Activity</title>
 
     <!-- Google Font -->
@@ -15,6 +16,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -28,68 +30,107 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            color: white;
+            color: #ffffff;
 
             background:
-                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.35), transparent 30%),
-                radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.3), transparent 30%),
-                #090d18;
+                radial-gradient(circle at 10% 10%, rgba(129, 140, 248, 0.30), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(192, 132, 252, 0.25), transparent 30%),
+                linear-gradient(135deg, #080b18, #10152a 50%, #0b1020);
         }
 
-        /* Background glowing circles */
+        /* Background glowing shapes */
+
         body::before,
         body::after {
             content: "";
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(90px);
             z-index: -1;
+            pointer-events: none;
         }
 
         body::before {
-            width: 300px;
-            height: 300px;
-            background: #4f46e5;
-            top: -100px;
-            left: -80px;
-            opacity: 0.4;
+            width: 350px;
+            height: 350px;
+            background: #6366f1;
+            top: -150px;
+            left: -120px;
+            opacity: 0.35;
         }
 
         body::after {
-            width: 350px;
-            height: 350px;
-            background: #7c3aed;
-            bottom: -150px;
-            right: -100px;
-            opacity: 0.3;
+            width: 400px;
+            height: 400px;
+            background: #a855f7;
+            bottom: -180px;
+            right: -120px;
+            opacity: 0.25;
         }
 
-        /* Main card */
+        /* Floating background circles */
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+
+        .circle.one {
+            width: 180px;
+            height: 180px;
+            top: 8%;
+            right: 12%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .circle.two {
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 10%;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Main container */
+
         .container {
             position: relative;
             width: 90%;
-            max-width: 650px;
-            padding: 50px 45px;
+            max-width: 680px;
+            padding: 55px 50px;
+
             text-align: center;
 
-            background: rgba(17, 24, 39, 0.72);
+            background: rgba(15, 23, 42, 0.68);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 30px;
 
             box-shadow:
-                0 25px 80px rgba(0, 0, 0, 0.45),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+                0 30px 80px rgba(0,0,0,0.45),
+                inset 0 1px 0 rgba(255,255,255,0.10);
 
-            animation: appear 0.8s ease;
+            animation: appear 0.9s ease;
         }
 
         @keyframes appear {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.96);
+                transform: translateY(35px) scale(0.95);
             }
 
             to {
@@ -98,27 +139,63 @@
             }
         }
 
+        /* Small top label */
+
+        .top-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 14px;
+            margin-bottom: 25px;
+
+            border-radius: 50px;
+
+            background: rgba(129, 140, 248, 0.10);
+            border: 1px solid rgba(129, 140, 248, 0.20);
+
+            color: #c7d2fe;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .top-label i {
+            color: #a5b4fc;
+        }
+
         /* Git icon */
+
         .git-icon {
-            width: 95px;
-            height: 95px;
+            width: 105px;
+            height: 105px;
+
             margin: 0 auto 28px;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            border-radius: 28px;
+            border-radius: 30px;
 
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background:
+                linear-gradient(135deg,
+                rgba(99,102,241,0.95),
+                rgba(168,85,247,0.95));
+
+            border: 1px solid rgba(255,255,255,0.15);
 
             box-shadow:
-                0 15px 35px rgba(99, 102, 241, 0.35),
-                0 0 35px rgba(139, 92, 246, 0.2);
+                0 20px 45px rgba(99,102,241,0.30),
+                0 0 60px rgba(139,92,246,0.18);
 
-            font-size: 48px;
+            font-size: 52px;
 
             animation: floating 3s ease-in-out infinite;
+        }
+
+        .git-icon i {
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
         }
 
         @keyframes floating {
@@ -127,231 +204,481 @@
             }
 
             50% {
-                transform: translateY(-8px);
+                transform: translateY(-9px);
             }
         }
 
         /* Heading */
+
         h1 {
-            font-size: 38px;
+            font-size: 42px;
             font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
+            letter-spacing: -1.5px;
+            margin-bottom: 10px;
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #818cf8, #c084fc);
+            background: linear-gradient(
+                90deg,
+                #93c5fd,
+                #a5b4fc,
+                #d8b4fe
+            );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            color: #a5b4fc;
-            font-size: 15px;
-            margin-bottom: 28px;
-        }
-
-        /* Activity box */
-        .activity {
-            text-align: left;
-            padding: 22px;
-
-            background: rgba(255, 255, 255, 0.045);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-
-            transition: 0.3s ease;
-        }
-
-        .activity:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-3px);
-        }
-
-        .activity-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .activity-header i {
-            color: #818cf8;
-        }
-
-        .activity-header span {
-            font-size: 14px;
-            font-weight: 600;
-            color: #c7d2fe;
-        }
-
-        .activity p {
             color: #94a3b8;
             font-size: 14px;
-            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
-        /* Git branch */
+        /* Branch */
+
         .branch {
             display: flex;
             align-items: center;
             justify-content: center;
+
             gap: 10px;
-            margin: 28px 0;
+            margin: 28px 0 32px;
         }
 
         .dot {
             width: 12px;
             height: 12px;
+
             border-radius: 50%;
-            background: #818cf8;
-            box-shadow: 0 0 12px #818cf8;
+
+            background: #a5b4fc;
+
+            box-shadow:
+                0 0 10px #818cf8,
+                0 0 20px rgba(129,140,248,0.4);
+
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
         }
 
         .line {
-            width: 55px;
+            width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, #6366f1, #a78bfa);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6366f1,
+                    #a78bfa
+                );
+
+            box-shadow:
+                0 0 10px rgba(129,140,248,0.35);
+        }
+
+        /* Activity card */
+
+        .activity {
+            text-align: left;
+
+            padding: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.07),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 20px;
+
+            transition: all 0.35s ease;
+
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .activity:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(165,180,252,0.25);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.20),
+                0 0 25px rgba(99,102,241,0.08);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .activity-header .icon-box {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 10px;
+
+            background: rgba(99,102,241,0.15);
+
+            color: #a5b4fc;
+        }
+
+        .activity-header span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e0e7ff;
+        }
+
+        .activity p {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* Information tags */
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 6px 11px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+
+            color: #a5b4fc;
+            font-size: 10px;
+            letter-spacing: 0.5px;
         }
 
         /* Buttons */
+
         .buttons {
             display: flex;
             justify-content: center;
+
             gap: 12px;
             flex-wrap: wrap;
+
+            margin-top: 28px;
         }
 
         .btn {
+            position: relative;
+
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
 
-            padding: 12px 22px;
+            gap: 9px;
 
-            border-radius: 12px;
+            min-width: 145px;
+
+            padding: 13px 22px;
+
+            border-radius: 13px;
 
             text-decoration: none;
-            font-size: 13px;
+
+            font-size: 12px;
             font-weight: 600;
 
-            transition: 0.3s ease;
+            overflow: hidden;
+
+            transition: all 0.3s ease;
+        }
+
+        .btn::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.12),
+                transparent
+            );
+
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
             color: white;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+                );
+
+            box-shadow:
+                0 10px 25px rgba(99,102,241,0.25);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(99,102,241,0.40);
         }
 
         .btn-secondary {
             color: #cbd5e1;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            background: rgba(255,255,255,0.055);
+
+            border: 1px solid rgba(255,255,255,0.10);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            color: white;
+
+            background: rgba(255,255,255,0.10);
+
+            border-color: rgba(165,180,252,0.25);
+
+            transform: translateY(-4px);
         }
 
         /* Footer */
+
         .footer {
             margin-top: 30px;
+
             color: #64748b;
-            font-size: 11px;
-            letter-spacing: 1px;
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+        }
+
+        .footer span {
+            color: #818cf8;
         }
 
         /* Responsive */
-        @media (max-width: 500px) {
+
+        @media (max-width: 600px) {
+
+            body {
+                overflow-y: auto;
+                padding: 30px 0;
+            }
 
             .container {
+                width: 92%;
                 padding: 40px 25px;
             }
 
             h1 {
-                font-size: 30px;
+                font-size: 32px;
             }
 
             .git-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 40px;
+                width: 85px;
+                height: 85px;
+                font-size: 42px;
+                border-radius: 24px;
             }
 
             .line {
                 width: 35px;
             }
+
+            .activity {
+                padding: 20px;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
+
     </style>
 </head>
 
 <body>
 
+    <!-- Background Decorations -->
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+
+    <!-- Main Card -->
+
     <div class="container">
 
+        <!-- Top Label -->
+
+        <div class="top-label">
+            <i class="fa-solid fa-code"></i>
+            ACTIVITY #03
+        </div>
+
+
         <!-- Git Icon -->
+
         <div class="git-icon">
             <i class="fa-brands fa-git-alt"></i>
         </div>
 
+
         <!-- Title -->
+
         <h1>
             Hello, <span class="gradient-text">Git!</span>
         </h1>
 
         <p class="subtitle">
-            My Activity #3 • Learning Git & GitHub
+            Learning Git & GitHub • Version Control
         </p>
 
+
         <!-- Git Branch Decoration -->
+
         <div class="branch">
+
             <div class="dot"></div>
+
             <div class="line"></div>
+
             <div class="dot"></div>
+
             <div class="line"></div>
+
             <div class="dot"></div>
+
         </div>
 
+
         <!-- Activity Information -->
+
         <div class="activity">
 
             <div class="activity-header">
-                <i class="fa-solid fa-code-branch"></i>
+
+                <div class="icon-box">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+
                 <span>My Git Journey</span>
+
             </div>
 
             <p>
                 I am learning how to use Git and GitHub to
                 manage, save, and track changes in my projects.
+                This activity helps me understand version control
+                and how developers work with repositories.
             </p>
 
         </div>
 
+
+        <!-- Tags -->
+
+        <div class="tags">
+
+            <div class="tag">
+                <i class="fa-solid fa-code-commit"></i>
+                COMMITS
+            </div>
+
+            <div class="tag">
+                <i class="fa-solid fa-code-branch"></i>
+                BRANCHES
+            </div>
+
+            <div class="tag">
+                <i class="fa-brands fa-github"></i>
+                GITHUB
+            </div>
+
+        </div>
+
+
         <!-- Buttons -->
+
         <div class="buttons">
 
             <a href="#" class="btn btn-primary">
+
                 <i class="fa-brands fa-github"></i>
+
                 GitHub
+
             </a>
 
+
             <a href="#" class="btn btn-secondary">
+
                 <i class="fa-solid fa-code"></i>
+
                 My Activity
+
             </a>
 
         </div>
 
+
         <!-- Footer -->
+
         <div class="footer">
-            ACTIVITY #03 &nbsp; • &nbsp; GIT & GITHUB
+
+            <span>ACTIVITY #03</span>
+            &nbsp; • &nbsp;
+            GIT & GITHUB
+            &nbsp; • &nbsp;
+            VERSION CONTROL
+
         </div>
 
     </div>
