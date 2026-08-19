@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Git Activity</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+
+            background:
+                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.35), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.3), transparent 30%),
+                #090d18;
+        }
+
+        /* Background glowing circles */
+        body::before,
+        body::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: #4f46e5;
+            top: -100px;
+            left: -80px;
+            opacity: 0.4;
+        }
+
+        body::after {
+            width: 350px;
+            height: 350px;
+            background: #7c3aed;
+            bottom: -150px;
+            right: -100px;
+            opacity: 0.3;
+        }
+
+        /* Main card */
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 650px;
+            padding: 50px 45px;
+            text-align: center;
+
+            background: rgba(17, 24, 39, 0.72);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+            animation: appear 0.8s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Git icon */
+        .git-icon {
+            width: 95px;
+            height: 95px;
+            margin: 0 auto 28px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 28px;
+
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+            box-shadow:
+                0 15px 35px rgba(99, 102, 241, 0.35),
+                0 0 35px rgba(139, 92, 246, 0.2);
+
+            font-size: 48px;
+
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #a5b4fc;
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        /* Activity box */
+        .activity {
+            text-align: left;
+            padding: 22px;
+
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+
+            transition: 0.3s ease;
+        }
+
+        .activity:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-3px);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .activity-header i {
+            color: #818cf8;
+        }
+
+        .activity-header span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #c7d2fe;
+        }
+
+        .activity p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Git branch */
+        .branch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 28px 0;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #818cf8;
+            box-shadow: 0 0 12px #818cf8;
+        }
+
+        .line {
+            width: 55px;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #a78bfa);
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            color: white;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .git-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .line {
+                width: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Git Icon -->
+        <div class="git-icon">
+            <i class="fa-brands fa-git-alt"></i>
+        </div>
+
+        <!-- Title -->
+        <h1>
+            Hello, <span class="gradient-text">Git!</span>
+        </h1>
+
+        <p class="subtitle">
+            My Activity #3 • Learning Git & GitHub
+        </p>
+
+        <!-- Git Branch Decoration -->
+        <div class="branch">
+            <div class="dot"></div>
+            <div class="line"></div>
+            <div class="dot"></div>
+            <div class="line"></div>
+            <div class="dot"></div>
+        </div>
+
+        <!-- Activity Information -->
+        <div class="activity">
+
+            <div class="activity-header">
+                <i class="fa-solid fa-code-branch"></i>
+                <span>My Git Journey</span>
+            </div>
+
+            <p>
+                I am learning how to use Git and GitHub to
+                manage, save, and track changes in my projects.
+            </p>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+
+            <a href="#" class="btn btn-primary">
+                <i class="fa-brands fa-github"></i>
+                GitHub
+            </a>
+
+            <a href="#" class="btn btn-secondary">
+                <i class="fa-solid fa-code"></i>
+                My Activity
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            ACTIVITY #03 &nbsp; • &nbsp; GIT & GITHUB
+        </div>
+
+    </div>
+
+</body>
+</html>
